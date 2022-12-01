@@ -7,6 +7,7 @@ pipeline {
         metadata:
           labels:
             app: test
+          namespace: jenkins  
         spec:
           containers:
           - name: git
