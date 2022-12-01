@@ -9,7 +9,7 @@ spec:
     args:
     - "--dockerfile=Dockerfile"
     - "--context=git://github.com/kunchalavikram1427/kaniko-demo.git" #git://github.com/kunchalavikram1427/connected-app.git#refs/heads/master
-    - "--destination=kunchalavikram/kaniko-demo-image:latest"
+    - "--destination=duniaalk/myweb:latest"
     volumeMounts:
     - name: kaniko-secret
       mountPath: /kaniko/.docker
@@ -17,7 +17,7 @@ spec:
   volumes:
   - name: kaniko-secret
     secret:
-      secretName: regcred
+      secretName: dockercred
       items:
         - key: .dockerconfigjson
           path: config.json
