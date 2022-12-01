@@ -20,7 +20,7 @@ pipeline {
             - cat
             tty: true
           - name: kaniko
-            image: gcr.io/kaniko-project/executor:debug
+            image: gcr.io/kaniko-project/executor:51734fc3a33e04f113487853d118608ba6ff2b81
             command:
             - cat
             tty: true
@@ -30,7 +30,7 @@ pipeline {
           volumes:
           - name: kaniko-secret
             secret:
-              secretName: regcred
+              secretName: dockercred
               items:
                 - key: .dockerconfigjson
                   path: config.json
@@ -62,7 +62,7 @@ pipeline {
     stage('Build Container Image'){
       steps {
         container('kaniko'){
-          sh "/kaniko/executor --context $WORKSPACE --destination $IMAGE_NAME:$IMAGE_TAG"
+          sh "/kaniko/executor --context $WORKSPACE --destination duniaalk/jenkins:$IMAGE_TAG"
         }
       }
     }
