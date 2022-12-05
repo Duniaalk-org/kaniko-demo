@@ -17,7 +17,7 @@ spec:
         app: maven
     spec:
       containers:
-      - image: duniaalk/kaniko-maven:1
+      - image: duniaalk/kaniko-maven
         imagePullPolicy: Always
         name: maven
 
@@ -32,9 +32,9 @@ metadata:
 spec:
   ports:
   - nodePort: 32223
-    port: 80
+    port: 8080
     protocol: TCP
-    targetPort: 8080
+    targetPort: 80
   selector:
     app: maven
   type: NodePort
