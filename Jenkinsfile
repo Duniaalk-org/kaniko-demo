@@ -21,7 +21,7 @@ pipeline {
             - cat
             tty: true
           - name: kaniko
-            image: gcr.io/kaniko-project/executor:51734fc3a33e04f113487853d118608ba6ff2b81
+            image: gcr.io/kaniko-project/executor:debug-51734fc3a33e04f113487853d118608ba6ff2b81
             command:
             - cat
             tty: true
@@ -39,7 +39,7 @@ pipeline {
     }      
   }
   environment{
-    DOCKERHUB_USERNAME = "kunchalavikram"
+    DOCKERHUB_USERNAME = "duniaalk"
     APP_NAME = "kaniko-webapp-demo"
     IMAGE_NAME = "${DOCKERHUB_USERNAME}" + "/" + "${APP_NAME}"
     IMAGE_TAG = "${BUILD_NUMBER}"
@@ -63,7 +63,7 @@ pipeline {
     stage('Build Container Image'){
       steps {
         container('kaniko'){
-          sh "/kaniko/executor --context $WORKSPACE --destination duniaalk/jenkins:$IMAGE_TAG"
+          sh "/kaniko/executor --context $WORKSPACE --destination duniaalk/kaniko-maven:$IMAGE_TAG"
         }
       }
     }
