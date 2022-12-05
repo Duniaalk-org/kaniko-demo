@@ -1,0 +1,40 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: maven
+  name: maven
+  namespace: jenkins
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: maven
+  template:
+    metadata:
+      labels:
+        app: maven
+    spec:
+      containers:
+      - image: duniaalk/kaniko-maven:1
+        imagePullPolicy: Always
+        name: maven
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: maven
+  name: maven
+  namespace: jenkins
+spec:
+  ports:
+  - nodePort: 32223
+    port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: maven
+  type: NodePort
