@@ -15,6 +15,11 @@ pipeline {
             command:
             - cat
             tty: true
+          - name: kubectl
+            image: joshendriks/alpine-k8s
+            command:
+             - /bin/cat
+            tty: true 
           - name: maven
             image: maven:3.8.3-adoptopenjdk-11
             command:
