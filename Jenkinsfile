@@ -53,7 +53,7 @@ pipeline {
     stage('Checkout SCM') {
       steps {
         container('git') {
-          git url: 'https://github.com/kunchalavikram1427/maven-employee-web-application.git',
+          git url: 'https://github.com/Devops-dunia-company123/maven-employee-web-application',
           branch: 'master'
         }
       }
